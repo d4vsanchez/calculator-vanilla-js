@@ -2,6 +2,7 @@
   const defaultOptions = {
     formElement: '.theme-toggle',
     tipElement: '.selected-theme',
+    themeElement: document.body,
   };
   function ThemeToggle(options) {
     this.options = { ...defaultOptions, ...options };
@@ -34,6 +35,22 @@
     }
   };
 
+  ThemeToggle.prototype.updateThemeClass = function (themeSuffix) {
+    const themeName = `theme${themeSuffix}`;
+    this.options.themeElement.className = themeName;
+  };
+
+  ThemeToggle.prototype.selectTheme = function (themeNumber) {
+    const themeOptions = this.form.querySelectorAll('input[type="radio"]');
+    themeOptions.forEach((themeOption) => {
+      const isChecked = parseInt(themeOption.value) === themeNumber;
+      if (isChecked) {
+        themeOption.click();
+        this.updateThemeClass(themeNumber);
+      }
+    });
+  };
+
   ThemeToggle.prototype.moveTip = function () {
     const selectedThemeButton = this.getSelectedThemeElement();
     const formDimensions = this.getElementDimensions(this.form);
@@ -43,6 +60,7 @@
     const topOffset = `${selectedThemeButtonDimensions.top - formDimensions.top}px`;
     this.themeTip.style.setProperty('transform', `translate(${leftOffset}, ${topOffset})`);
 
+    this.updateThemeClass(selectedThemeButton.value);
     this.fireEvent('onChange', selectedThemeButton.value);
   };
 

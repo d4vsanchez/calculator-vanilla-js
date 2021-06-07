@@ -1,23 +1,19 @@
 (function () {
-  function loadTheme(themeNumber) {
-    const themeName = `theme${themeNumber}`;
-    const themePath = `./css/theme${themeNumber}.css`;
+  const themeToggle = new ThemeToggle();
+  new CalculatorView(new Calculator());
 
-    const links = document.head.querySelectorAll('link');
-    const hasLoadedTheme = Array.from(links).find((link) => link.href.includes(themeName)) !== undefined;
+  function initializeTheme(themeToggle) {
+    const lightModeTheme = 2;
+    const darkModeTheme = 1;
 
-    if (!hasLoadedTheme) {
-      document.head.insertAdjacentHTML(
-        'beforeend',
-        `<link rel="stylesheet" href="${themePath}" onload="document.body.className = '${themeName}'" />`
-      );
-    } else {
-      document.body.className = themeName;
+    if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      themeToggle.selectTheme(lightModeTheme);
+    }
+
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      themeToggle.selectTheme(darkModeTheme);
     }
   }
 
-  const themeToggle = new ThemeToggle(document.querySelector('.theme-toggle'));
-  themeToggle.onChange = loadTheme;
-
-  new CalculatorView(new Calculator());
+  initializeTheme(themeToggle);
 })();
