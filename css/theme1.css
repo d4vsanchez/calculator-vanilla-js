@@ -1,0 +1,19 @@
+body.theme1 {
+    --background: hsl(222, 26%, 31%);
+    --foreground: hsl(0, 0%, 100%);
+
+    --calculatorDisplayBackground: hsl(224, 36%, 15%);
+
+    --calculatorKeypadBackground: hsl(223, 31%, 20%);
+    --calculatorKeyBackground: hsl(30, 25%, 89%);
+    --calculatorKeyShadow: inset 0 -3px hsl(28, 16%, 65%);
+    --calculatorKeyColor: hsl(221, 14%, 31%);
+
+    --calculatorDestructiveKeyBackground: hsl(225, 21%, 49%);
+    --calculatorDestructiveKeyShadow: inset 0 -3px hsl(224, 28%, 35%);
+    --calculatorDestructiveColor: var(--foreground);
+
+    --calculatorEqualKeyBackground: hsl(6, 63%, 50%);
+    --calculatorEqualKeyShadow: inset 0 -3px hsl(6, 70%, 34%);
+    --calculatorEqualKeyColor: var(--foreground);
+}

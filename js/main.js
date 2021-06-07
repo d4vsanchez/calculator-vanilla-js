@@ -1,7 +1,11 @@
 /* Theme Toggle */
-function ThemeToggle(themeForm, tipClass = '.selected-theme') {
+const themeToggleDefaultOptions = {
+  tipElement: '.selected-theme',
+};
+function ThemeToggle(themeForm, options) {
   this.form = themeForm;
-  this.themeTip = themeForm.querySelector(tipClass);
+  this.options = { ...themeToggleDefaultOptions, ...options };
+  this.themeTip = themeForm.querySelector(this.options.tipElement);
 
   this.moveTip();
   this.form.addEventListener('change', () => this.moveTip());
@@ -23,6 +27,12 @@ ThemeToggle.prototype.animateTip = function () {
   });
 }
 
+ThemeToggle.prototype.fireEvent = function (eventName, payload) {
+  if (typeof this[eventName] === 'function') {
+    this[eventName](payload);
+  }
+}
+
 ThemeToggle.prototype.moveTip = function () {
   const selectedThemeButton = this.getSelectedThemeElement();
   const formDimensions = this.getElementDimensions(this.form);
@@ -31,6 +41,8 @@ ThemeToggle.prototype.moveTip = function () {
   const leftOffset = `${selectedThemeButtonDimensions.left - formDimensions.left}px`;
   const topOffset = `${selectedThemeButtonDimensions.top - formDimensions.top}px`;
   this.themeTip.style.setProperty('transform', `translate(${leftOffset}, ${topOffset})`);
+
+  this.fireEvent('onChange', selectedThemeButton.value);
 }
 
 /* Calculator */
@@ -167,7 +179,25 @@ CalculatorView.prototype.isOperation = function (data) {
 }
 
 /* Initial setup */
-new ThemeToggle(document.querySelector('.theme-toggle'));
+function loadTheme(themeNumber) {
+  const themeName = `theme${themeNumber}`;
+  const themePath = `./css/theme${themeNumber}.css`;
+
+  const links = document.head.querySelectorAll('link');
+  const hasLoadedTheme = Array.from(links).find(link => link.href.includes(themeName)) !== undefined;
+
+  if (!hasLoadedTheme) {
+    document.head.insertAdjacentHTML(
+      'beforeend',
+      `<link rel="stylesheet" href="${themePath}" onload="document.body.className = '${themeName}'" />`,
+    )
+  } else {
+    document.body.className = themeName;
+  }
+}
+
+const themeToggle = new ThemeToggle(document.querySelector('.theme-toggle'));
+themeToggle.onChange = loadTheme;
 
 new CalculatorView(new Calculator());
 
