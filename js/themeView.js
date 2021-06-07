@@ -18,8 +18,8 @@
     const darkModeMediaQuery = this.getDarkModeMediaQuery();
     const isDarkMode = darkModeMediaQuery.matches;
     const newTheme = isDarkMode ? this.options.darkTheme : this.options.lightTheme;
-    this.changeTheme(newTheme);
     this.themeToggle.selectTheme(newTheme);
+    this.changeTheme(newTheme);
   };
 
   ThemeView.prototype.getColorSchemeModeMediaQuery = function (colorScheme) {
