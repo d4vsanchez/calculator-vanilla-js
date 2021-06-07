@@ -38,36 +38,36 @@
     </div>
 
     <section class="calculator">
-      <div class="calculator-display">9999</div>
+      <div class="calculator-display">0</div>
 
       <div class="calculator-keypad">
         <!-- First row -->
-        <button class="keypad-key">7</button>
-        <button class="keypad-key">8</button>
-        <button class="keypad-key">9</button>
-        <button class="keypad-key keypad-destructive-key">del</button>
+        <button class="keypad-key" data-calculator="7">7</button>
+        <button class="keypad-key" data-calculator="8">8</button>
+        <button class="keypad-key" data-calculator="9">9</button>
+        <button class="keypad-key keypad-destructive-key" data-calculator="del">del</button>
 
         <!-- Second row -->
-        <button class="keypad-key">4</button>
-        <button class="keypad-key">5</button>
-        <button class="keypad-key">6</button>
-        <button class="keypad-key">+</button>
+        <button class="keypad-key" data-calculator="4">4</button>
+        <button class="keypad-key" data-calculator="5">5</button>
+        <button class="keypad-key" data-calculator="6">6</button>
+        <button class="keypad-key" data-calculator="+">+</button>
 
         <!-- Third row -->
-        <button class="keypad-key">1</button>
-        <button class="keypad-key">2</button>
-        <button class="keypad-key">3</button>
-        <button class="keypad-key">-</button>
+        <button class="keypad-key" data-calculator="1">1</button>
+        <button class="keypad-key" data-calculator="2">2</button>
+        <button class="keypad-key" data-calculator="3">3</button>
+        <button class="keypad-key" data-calculator="-">-</button>
 
         <!-- Fourth row -->
-        <button class="keypad-key">.</button>
-        <button class="keypad-key">0</button>
-        <button class="keypad-key">/</button>
-        <button class="keypad-key">&times;</button>
+        <button class="keypad-key" data-calculator=".">.</button>
+        <button class="keypad-key" data-calculator="0">0</button>
+        <button class="keypad-key" data-calculator="/">/</button>
+        <button class="keypad-key" data-calculator="*">&times;</button>
 
         <!-- Fifth row -->
-        <button class="keypad-key keypad-destructive-key" style="grid-column: span 2;">Reset</button>
-        <button class="keypad-key keypad-equal-key" style="grid-column: span 2;">=</button>
+        <button class="keypad-key keypad-destructive-key" style="grid-column: span 2;" data-calculator="reset">Reset</button>
+        <button class="keypad-key keypad-equal-key" style="grid-column: span 2;" data-calculator="=">=</button>
       </div>
     </section>
   </div>

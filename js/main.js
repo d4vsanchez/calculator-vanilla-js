@@ -33,5 +33,141 @@ ThemeToggle.prototype.moveTip = function () {
   this.themeTip.style.setProperty('transform', `translate(${leftOffset}, ${topOffset})`);
 }
 
+/* Calculator */
+function Calculator() {
+  this.total = null;
+  this.displayValue = '';
+  this.currentOperation = null;
+}
+
+Calculator.prototype.addNumber = function (number) {
+  this.displayValue += number;
+}
+
+Calculator.prototype.deleteNumber = function () {
+  const size = this.displayValue.length;
+  this.displayValue = this.displayValue.slice(0, size - 1);
+}
+
+Calculator.prototype.addOperation = function (operation) {
+  const parsedValue = this.displayValue ? parseFloat(this.displayValue) : null;
+  this.displayValue = '';
+
+  if (this.total === null) {
+    this.total = parsedValue;
+  } else if (parsedValue != null) {
+    switch (this.currentOperation || operation) {
+      case '+':
+        this.total += parsedValue;
+        break;
+      case '-':
+        this.total -= parsedValue;
+        break;
+      case '*':
+        this.total *= parsedValue;
+        break;
+      case '/':
+        this.total /= parsedValue;
+        break;
+      default: // Do nothing
+    }
+  }
+
+  this.currentOperation = operation;
+}
+
+Calculator.prototype.reset = function () {
+  this.total = null;
+  this.displayValue = '';
+  this.currentOperation = null;
+}
+
+Calculator.prototype.calculate = function () {
+  if (this.currentOperation !== null) {
+    this.addOperation(this.currentOperation);
+  }
+
+  this.displayValue = '';
+  return this.total;
+}
+
+/* Calculator view */
+const defaultOptions = {
+  keypadElement: '.calculator-keypad',
+  keyElement: '.keypad-key',
+  displayElement: '.calculator-display',
+  dataAccessor: 'calculator',
+  deleteKey: 'del',
+  resetKey: 'reset',
+  equalsKey: '=',
+  operations: ['+', '-', '/', '*']
+};
+function CalculatorView(calculator, options) {
+  this.calculator = calculator;
+  this.options = { ...defaultOptions, ...options };
+  this.keypadElement = document.querySelector(this.options.keypadElement);
+  this.displayElement = document.querySelector(this.options.displayElement);
+
+  this.keypadElement.addEventListener('click', (ev) => {
+    ev.stopPropagation();
+    const pressedKey = ev.target;
+
+    if (this.isKeypadKey(pressedKey)) {
+      const data = this.getData(pressedKey);
+      this.sendKey(data);
+    }
+  })
+}
+
+CalculatorView.prototype.getData = function (element) {
+  return element.dataset[this.options.dataAccessor];
+}
+
+CalculatorView.prototype.updateDisplay = function () {
+  this.displayElement.textContent = this.calculator.displayValue || this.calculator.total || 0;
+}
+
+CalculatorView.prototype.sendKey = function (data) {
+  if (this.isOperation(data)) this.calculator.addOperation(data);
+  if (this.isEquals(data)) this.calculator.calculate(data);
+  if (this.isDelete(data)) this.calculator.deleteNumber();
+  if (this.isReset(data)) this.calculator.reset();
+  if (this.isNumber(data)) this.calculator.addNumber(data);
+
+  this.updateDisplay();
+}
+
+CalculatorView.prototype.isKeypadKey = function (element) {
+  const { keyElement } = this.options;
+  const firstCharacter = keyElement.charAt(0);
+  const firstCharacterIsLetter = firstCharacter.toUpperCase() !== firstCharacter.toLowerCase();
+  const keyElementClassName = firstCharacterIsLetter ? keyElement : keyElement.slice(1);
+
+  return element.classList.contains(keyElementClassName);
+}
+
+CalculatorView.prototype.isNumber = function (data) {
+  return isFinite(parseFloat(data)) || data === '.';
+}
+
+CalculatorView.prototype.isReset = function (data) {
+  return this.options.resetKey === data;
+}
+
+CalculatorView.prototype.isDelete = function (data) {
+  return this.options.deleteKey === data;
+}
+
+CalculatorView.prototype.isEquals = function (data) {
+  return this.options.equalsKey === data;
+}
+
+CalculatorView.prototype.isOperation = function (data) {
+  return this.options.operations.includes(data);
+}
+
 /* Initial setup */
 new ThemeToggle(document.querySelector('.theme-toggle'));
+
+new CalculatorView(new Calculator());
+
