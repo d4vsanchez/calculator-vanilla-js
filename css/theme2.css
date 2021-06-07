@@ -6,14 +6,14 @@ body.theme2 {
 
     --calculatorKeypadBackground: hsl(0, 5%, 81%);
     --calculatorKeyBackground: hsl(45, 7%, 89%);
-    --calculatorKeyShadow: inset 0 -3px hsl(35, 11%, 61%);
+    --calculatorKeyShadow: hsl(35, 11%, 61%);
     --calculatorKeyColor: hsl(60, 10%, 19%);
 
     --calculatorDestructiveKeyBackground: hsl(185, 42%, 37%);
-    --calculatorDestructiveKeyShadow: inset 0 -3px hsl(185, 58%, 25%);
+    --calculatorDestructiveKeyShadow: hsl(185, 58%, 25%);
     --calculatorDestructiveColor: hsl(0, 0%, 100%);
 
     --calculatorEqualKeyBackground: hsl(25, 98%, 40%);
-    --calculatorEqualKeyShadow: inset 0 -3px hsl(25, 99%, 27%);
+    --calculatorEqualKeyShadow: hsl(25, 99%, 27%);
     --calculatorEqualKeyColor: hsl(0, 0%, 100%);
 }

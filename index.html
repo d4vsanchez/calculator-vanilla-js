@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+
   <title>Frontend Mentor | Calculator app</title>
 
   <link rel="stylesheet" href="./css/theme1.css" />
@@ -18,24 +18,27 @@
     <div class="configuration">
       <h1>calc</h1>
 
-      <form class="theme-toggle">
-        <span class="selected-theme"></span>
+      <div class="theme-toggle-container">
+        <span class="theme-toggle-title">Theme</span>
+        <form class="theme-toggle">
+          <span class="selected-theme"></span>
 
-        <label>
-          <span>1</span>
-          <input type="radio" name="theme" value="1" checked />
-        </label>
+          <label>
+            <span>1</span>
+            <input type="radio" name="theme" value="1" checked />
+          </label>
 
-        <label>
-          <span>2</span>
-          <input type="radio" name="theme" value="2" />
-        </label>
+          <label>
+            <span>2</span>
+            <input type="radio" name="theme" value="2" />
+          </label>
 
-        <label>
-          <span>3</span>
-          <input type="radio" name="theme" value="3" />
-        </label>
-      </form>
+          <label>
+            <span>3</span>
+            <input type="radio" name="theme" value="3" />
+          </label>
+        </form>
+      </div>
     </div>
 
     <section class="calculator">
@@ -67,14 +70,14 @@
         <button class="keypad-key" data-calculator="*">&times;</button>
 
         <!-- Fifth row -->
-        <button class="keypad-key keypad-destructive-key" style="grid-column: span 2;" data-calculator="reset">Reset</button>
-        <button class="keypad-key keypad-equal-key" style="grid-column: span 2;" data-calculator="=">=</button>
+        <button class="keypad-key keypad-destructive-key big-key" data-calculator="reset">Reset</button>
+        <button class="keypad-key keypad-equal-key big-key" data-calculator="=">=</button>
       </div>
     </section>
   </div>
 
   <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
     Coded by <a href="https://github.com/d4vsanchez">David Sanchez</a>.
   </div>
 
