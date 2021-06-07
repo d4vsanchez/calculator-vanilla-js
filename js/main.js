@@ -1,19 +1,5 @@
 (function () {
-  const themeToggle = new ThemeToggle();
+  const themeViewOptions = { darkTheme: 'theme1', lightTheme: 'theme2' };
+  new ThemeView(new ThemeToggle(), themeViewOptions);
   new CalculatorView(new Calculator());
-
-  function initializeTheme(themeToggle) {
-    const lightModeTheme = 2;
-    const darkModeTheme = 1;
-
-    if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-      themeToggle.selectTheme(lightModeTheme);
-    }
-
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      themeToggle.selectTheme(darkModeTheme);
-    }
-  }
-
-  initializeTheme(themeToggle);
 })();

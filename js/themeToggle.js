@@ -35,19 +35,11 @@
     }
   };
 
-  ThemeToggle.prototype.updateThemeClass = function (themeSuffix) {
-    const themeName = `theme${themeSuffix}`;
-    this.options.themeElement.className = themeName;
-  };
-
-  ThemeToggle.prototype.selectTheme = function (themeNumber) {
+  ThemeToggle.prototype.selectTheme = function (themeName) {
     const themeOptions = this.form.querySelectorAll('input[type="radio"]');
     themeOptions.forEach((themeOption) => {
-      const isChecked = parseInt(themeOption.value) === themeNumber;
-      if (isChecked) {
-        themeOption.click();
-        this.updateThemeClass(themeNumber);
-      }
+      const isChecked = themeOption.value === themeName;
+      if (isChecked) themeOption.click();
     });
   };
 
@@ -60,7 +52,6 @@
     const topOffset = `${selectedThemeButtonDimensions.top - formDimensions.top}px`;
     this.themeTip.style.setProperty('transform', `translate(${leftOffset}, ${topOffset})`);
 
-    this.updateThemeClass(selectedThemeButton.value);
     this.fireEvent('onChange', selectedThemeButton.value);
   };
 
