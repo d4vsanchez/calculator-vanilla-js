@@ -4,23 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   
   <title>Frontend Mentor | Calculator app</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link rel="stylesheet" href="./css/main.css" />
 </head>
-<body>
+<body class="theme1">
+  <div class="container">
+    <div class="configuration">
+      <h1>calc</h1>
 
+      <form class="theme-toggle">
+        <span class="selected-theme"></span>
 
-  
+        <label>
+          <span>1</span>
+          <input type="radio" name="theme" value="1" checked />
+        </label>
+
+        <label>
+          <span>2</span>
+          <input type="radio" name="theme" value="2" />
+        </label>
+
+        <label>
+          <span>3</span>
+          <input type="radio" name="theme" value="3" />
+        </label>
+      </form>
+    </div>
+
+    <section class="calculator">
+      <div class="calculator-display">9999</div>
+
+      <div class="calculator-keypad">
+        <!-- First row -->
+        <button class="keypad-key">7</button>
+        <button class="keypad-key">8</button>
+        <button class="keypad-key">9</button>
+        <button class="keypad-key keypad-destructive-key">del</button>
+
+        <!-- Second row -->
+        <button class="keypad-key">4</button>
+        <button class="keypad-key">5</button>
+        <button class="keypad-key">6</button>
+        <button class="keypad-key">+</button>
+
+        <!-- Third row -->
+        <button class="keypad-key">1</button>
+        <button class="keypad-key">2</button>
+        <button class="keypad-key">3</button>
+        <button class="keypad-key">-</button>
+
+        <!-- Fourth row -->
+        <button class="keypad-key">.</button>
+        <button class="keypad-key">0</button>
+        <button class="keypad-key">/</button>
+        <button class="keypad-key">&times;</button>
+
+        <!-- Fifth row -->
+        <button class="keypad-key keypad-destructive-key" style="grid-column: span 2;">Reset</button>
+        <button class="keypad-key keypad-equal-key" style="grid-column: span 2;">=</button>
+      </div>
+    </section>
+  </div>
+
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="https://github.com/d4vsanchez">David Sanchez</a>.
   </div>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
